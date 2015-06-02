@@ -12,10 +12,8 @@ import android.widget.TextView;
 
 public class ActivityDisplayText extends ActionBarActivity
 {
-    Typeface arial = Typeface.createFromAsset(getAssets(),"arial_0.ttf");
-    Typeface comic = Typeface.createFromAsset(getAssets(),"comic_0.ttf");
-    Typeface mono = Typeface.createFromAsset(getAssets(),"MTCORSVA.ttf");
-    Typeface times = Typeface.createFromAsset(getAssets(),"times.ttf");
+    public Typeface tf=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -32,7 +30,7 @@ public class ActivityDisplayText extends ActionBarActivity
             t.setText(r);
             String f = b.getString("font");
             String c = b.getString("col");
-            String s = b.getString("size");
+            int s = b.getInt("size");
             Boolean bold = b.getBoolean("bold");
             Boolean italics = b.getBoolean("italics");
 
@@ -58,54 +56,26 @@ public class ActivityDisplayText extends ActionBarActivity
             }
 
 
-            if (s.equals("10") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
-            }
-
-            if (s.equals("12") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-            }
-
-            if (s.equals("14") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            }
-
-            if (s.equals("18") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-            }
-
-            if (s.equals("22") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
-            }
-
-            if (s.equals("26") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26);
-            }
-
-            if (s.equals("30") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-            }
-
-            if (s.equals("36") ) {
-                t.setTextSize(TypedValue.COMPLEX_UNIT_SP, 36);
-            }
+            t.setTextSize(TypedValue.COMPLEX_UNIT_SP,s);
 
 
-            if (f.equals("Comic Sans") ) {
-                t.setTypeface(comic);
-            }
-
-            if (f.equals("Monotype Corsiva") ) {
-                t.setTypeface(mono);
+            if (f.equals("Times New Roman") ) {
+                tf=Typeface.createFromAsset(getAssets(),"times.ttf");
             }
 
             if (f.equals("Arial") ) {
-                t.setTypeface(arial);
+                tf = Typeface.createFromAsset(getAssets(),"arial_0.ttf");
             }
 
-            if (f.equals("Times New Roman") ) {
-                t.setTypeface(times);
+            if (f.equals("Comic Sans") ) {
+                tf = Typeface.createFromAsset(getAssets(),"comic_0.ttf");
             }
+            if (f.equals("Monotype Corsiva") ) {
+                tf = Typeface.createFromAsset(getAssets(),"MTCORSVA.TTF");
+            }
+
+
+            t.setTypeface(tf);
 
 
             if (bold) {

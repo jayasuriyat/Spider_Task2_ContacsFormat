@@ -3,33 +3,30 @@ package com.jayasuriyat.spider_task2_contacsformat;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.app.Activity;
-import android.os.Bundle;
+
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.view.MenuItem;
+
 
 
 public class MainActivity extends ActionBarActivity
 {
-    public String font,col,size;
+    public String font="Times New Roman",col="Red";
+    public int size=10;
     public Boolean b,i;
     public EditText t;
 
 
 
-    public String[] fonts = {"Times New Roman", "Comic Sans", "Monotype Corsiva", "Arial",};
+    public String[] fonts = {"Times New Roman", "Arial","Comic Sans","Monotype Corsiva"};
     public String[] colours = {"Red", "Blue", "Black", "Yellow", "Green"};
-    public String[] sizes= {"10","12","14","18","22","26","30","36"};
+    public Integer[] sizes= {10,12,14,18,22,26,30,36};
 
 
     @Override
@@ -52,12 +49,11 @@ public class MainActivity extends ActionBarActivity
 
 
         final Spinner spin_size = (Spinner) findViewById(R.id.spinnersize);
-        ArrayAdapter<String> adapter_size = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sizes);
-        adapter_size.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<Integer> adapter_size = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, sizes);
         spin_size.setAdapter(adapter_size);
 
 
-        ListAdapter fontAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fonts);
+        ArrayAdapter fontAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, fonts);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(fontAdapter);
 
@@ -70,7 +66,7 @@ public class MainActivity extends ActionBarActivity
                         TextView c=(TextView)view;
                         font=c.getText().toString();
                         col= String.valueOf(spin_col.getSelectedItem());
-                        size= String.valueOf(spin_size.getSelectedItem());
+                        size=Integer.parseInt(String.valueOf(spin_size.getSelectedItem()));
 
                         Intent i=new Intent(MainActivity.this,ActivityDisplayText.class);
                         i.putExtra("font",font);
